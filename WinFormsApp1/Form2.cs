@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,9 +14,14 @@ namespace WinFormsApp1
 {
     public partial class Form2 : Form
     {
+
+
+        private Label labelTotal;
         public Form2()
         {
             InitializeComponent();
+
+
 
             List<string> items = new List<string>()
                {
@@ -34,6 +41,7 @@ namespace WinFormsApp1
             {
                 listBox1.Items.Add(item);
             }
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -81,13 +89,155 @@ namespace WinFormsApp1
 
         private void button4_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+
+
+        {
+            decimal total = 0m;
+            var culture = new CultureInfo("pt-BR");
+
+            foreach (var item in listBox2.Items)
+            {
+                string itemText = item.ToString();
+                // Regex: captura valor com vírgula e quantidade
+                var match = Regex.Match(itemText, @"R\$ (\d+,\d{2}).*Quantidade: (\d+)");
+                if (match.Success)
+                {
+                    // Parse já reconhecendo a vírgula
+                    decimal preco = decimal.Parse(match.Groups[1].Value, culture);
+                    int quantidade = int.Parse(match.Groups[2].Value, culture);
+
+                    total += preco * quantidade;
+                }
+            }
+
+            // Formata sempre com vírgula e duas casas decimais
+            string totalStr = total.ToString("F2", culture);
+
+            // Exibe o MessageBox
+            MessageBox.Show(
+                $"Pagamento em dinheiro confirmado!\nValor pago: R$ {totalStr}",
+                "Pagamento",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+
+            // Atualiza o label
+            labelTotal.Text = $"Total: R$ {totalStr}";
+        }
+
+
+
+
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void SalvarHistoricoPedido(List<string> itens, decimal total)
+        {
+            string caminho = "historico_pedidos.txt";
+            string dataHora = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Pedido em {dataHora}:");
+            foreach (var item in itens)
+            {
+                sb.AppendLine($"- {item}");
+            }
+            sb.AppendLine($"Total: R$ {total:F2}");
+            sb.AppendLine(new string('-', 40));
+
+            // Salva no arquivo (adiciona ao final)
+            File.AppendAllText(caminho, sb.ToString());
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+
+        {
             Form3 form = new Form3();
             form.Show();
 
+            // Calcula o total dos itens do pedido
+            decimal total = 0;
+            List<string> itensPedido = new List<string>();
+            foreach (var item in listBox2.Items)
+            {
+                itensPedido.Add(item.ToString());
+
+                // Extrai o preço e quantidade (igual ao cálculo do total)
+                int idxPreco = item.ToString().IndexOf("R$");
+                if (idxPreco >= 0)
+                {
+                    string precoStr = item.ToString().Substring(idxPreco + 2).Trim();
+                    precoStr = precoStr.Split(' ')[0].Replace(",", ".");
+                    decimal preco = 0;
+                    decimal.TryParse(precoStr, out preco);
+
+                    int quantidade = 1;
+                    int idxQtd = item.ToString().IndexOf("Quantidade:");
+                    if (idxQtd >= 0)
+                    {
+                        string qtdStr = item.ToString().Substring(idxQtd + 11).Trim();
+                        int.TryParse(qtdStr, out quantidade);
+                    }
+
+                    total += preco * quantidade;
+                }
+            }
+
+            SalvarHistoricoPedido(itensPedido, total);
+
+            
+            listBox2.Items.Clear();
+
+            MessageBox.Show("Pedido enviado e salvo no histórico!");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            decimal total = 0m; // Adiciona a variável 'total' no escopo do método  
+            var culture = new CultureInfo("pt-BR");
+
+            foreach (var item in listBox2.Items)
+            {
+                string itemText = item.ToString();
+                // Regex: captura valor com vírgula e quantidade  
+                var match = Regex.Match(itemText, @"R\$ (\d+,\d{2}).*Quantidade: (\d+)");
+                if (match.Success)
+                {
+                    // Parse já reconhecendo a vírgula  
+                    decimal preco = decimal.Parse(match.Groups[1].Value, culture);
+                    int quantidade = int.Parse(match.Groups[2].Value, culture);
+
+                    total += preco * quantidade;
+                }
+            }
+
+            // Formata sempre com vírgula e duas casas decimais  
+            string totalStr = total.ToString("F2", culture);
+
+            // Exibe o MessageBox  
+            MessageBox.Show($"Pagamento em cartão o valor é de R$ {totalStr}");
         }
     }
 }
-        
+
+
+
+            
 
     
 

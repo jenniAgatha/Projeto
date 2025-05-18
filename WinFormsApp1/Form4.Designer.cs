@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp1
 {
-    partial class Form3
+    partial class Form4
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listBox1 = new ListBox();
             SuspendLayout();
             // 
-            // listBox1
-            // 
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(67, 62);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(372, 464);
-            listBox1.TabIndex = 0;
-            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged_1;
-            // 
-            // Form3
+            // Form4
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1322, 696);
-            Controls.Add(listBox1);
-            Name = "Form3";
-            Text = "Form3";
+            ClientSize = new Size(1323, 702);
+            Name = "Form4";
+            Text = "Form4";
             ResumeLayout(false);
         }
 
         #endregion
-
-        private ListBox listBox1;
     }
 }
