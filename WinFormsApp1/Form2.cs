@@ -102,11 +102,10 @@ namespace WinFormsApp1
             foreach (var item in listBox2.Items)
             {
                 string itemText = item.ToString();
-                // Regex: captura valor com vírgula e quantidade
+
                 var match = Regex.Match(itemText, @"R\$ (\d+,\d{2}).*Quantidade: (\d+)");
                 if (match.Success)
                 {
-                    // Parse já reconhecendo a vírgula
                     decimal preco = decimal.Parse(match.Groups[1].Value, culture);
                     int quantidade = int.Parse(match.Groups[2].Value, culture);
 
@@ -114,10 +113,10 @@ namespace WinFormsApp1
                 }
             }
 
-            // Formata sempre com vírgula e duas casas decimais
+
             string totalStr = total.ToString("F2", culture);
 
-            // Exibe o MessageBox
+
             MessageBox.Show(
                 $"Pagamento em dinheiro confirmado!\nValor pago: R$ {totalStr}",
                 "Pagamento",
@@ -125,7 +124,7 @@ namespace WinFormsApp1
                 MessageBoxIcon.Information
             );
 
-            // Atualiza o label
+
             labelTotal.Text = $"Total: R$ {totalStr}";
         }
 
@@ -160,7 +159,7 @@ namespace WinFormsApp1
             sb.AppendLine($"Total: R$ {total:F2}");
             sb.AppendLine(new string('-', 40));
 
-            // Salva no arquivo (adiciona ao final)
+
             File.AppendAllText(caminho, sb.ToString());
         }
 
@@ -170,14 +169,14 @@ namespace WinFormsApp1
             Form3 form = new Form3();
             form.Show();
 
-            // Calcula o total dos itens do pedido
+
             decimal total = 0;
             List<string> itensPedido = new List<string>();
             foreach (var item in listBox2.Items)
             {
                 itensPedido.Add(item.ToString());
 
-                // Extrai o preço e quantidade (igual ao cálculo do total)
+
                 int idxPreco = item.ToString().IndexOf("R$");
                 if (idxPreco >= 0)
                 {
@@ -200,7 +199,7 @@ namespace WinFormsApp1
 
             SalvarHistoricoPedido(itensPedido, total);
 
-            
+
             listBox2.Items.Clear();
 
             MessageBox.Show("Pedido enviado e salvo no histórico!");
@@ -208,17 +207,17 @@ namespace WinFormsApp1
 
         private void button5_Click(object sender, EventArgs e)
         {
-            decimal total = 0m; // Adiciona a variável 'total' no escopo do método  
+            decimal total = 0m; 
             var culture = new CultureInfo("pt-BR");
 
             foreach (var item in listBox2.Items)
             {
                 string itemText = item.ToString();
-                // Regex: captura valor com vírgula e quantidade  
+          
                 var match = Regex.Match(itemText, @"R\$ (\d+,\d{2}).*Quantidade: (\d+)");
                 if (match.Success)
                 {
-                    // Parse já reconhecendo a vírgula  
+                    
                     decimal preco = decimal.Parse(match.Groups[1].Value, culture);
                     int quantidade = int.Parse(match.Groups[2].Value, culture);
 
@@ -226,14 +225,39 @@ namespace WinFormsApp1
                 }
             }
 
-            // Formata sempre com vírgula e duas casas decimais  
+     
             string totalStr = total.ToString("F2", culture);
 
-            // Exibe o MessageBox  
             MessageBox.Show($"Pagamento em cartão o valor é de R$ {totalStr}");
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedPaymentMethod = comboBox1.SelectedItem?.ToString();
+
+            if (selectedPaymentMethod == "Cartao")
+            {
+                MessageBox.Show("Pagamento em cartão confirmado!");
+            }
+            else if (selectedPaymentMethod == "Dinheiro")
+            {
+                MessageBox.Show("Pagamento em dinheiro confirmado!");
+            }
+            else
+            {
+                MessageBox.Show("Pagamento em pix confirmado!");
+            }
+        }
+
+   
+       
+            
+        
+
+           
+        }
     }
-}
+
 
 
 

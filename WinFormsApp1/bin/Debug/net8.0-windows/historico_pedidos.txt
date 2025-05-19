@@ -11,3 +11,19 @@ Pedido em 18/05/2025 18:57:58:
 - Coxinha - R$ 5,00 - Quantidade: 5
 Total: R$ 2500,00
 ----------------------------------------
+Pedido em 19/05/2025 08:26:05:
+- Jennifer
+- Coxinha - R$ 5,00 - Quantidade: 1
+- Coxinha - R$ 5,00 - Quantidade: 5
+Total: R$ 3000,00
+----------------------------------------
+Pedido em 19/05/2025 09:08:29:
+- vitinho
+- Pastel de Queijo - R$ 5,50 - Quantidade: 1
+- Suco Natural (300ml) - R$ 4,00 - Quantidade: 1
+- Água Mineral (500ml) - R$ 2,50 - Quantidade: 2
+Total: R$ 1450,00
+----------------------------------------
+Pedido em 19/05/2025 10:18:22:
+Total: R$ 0,00
+----------------------------------------
