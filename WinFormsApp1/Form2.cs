@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -14,32 +15,34 @@ namespace WinFormsApp1
 {
     public partial class Form2 : Form
     {
+        private decimal total;
+        private List<Produto> produtos = new List<Produto>();
 
-
-        private Label labelTotal;
         public Form2()
         {
             InitializeComponent();
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            AdicionarProdutos();
+            
+        }
 
 
+        private void AdicionarProdutos()
+        {
+            produtos.Add(new Produto("Pão de Queijo", 3.50m));
+            produtos.Add(new Produto("Coxinha", 5.00m));
+            produtos.Add(new Produto("Pastel de Carne", 6.00m));
+            produtos.Add(new Produto("Pastel de Queijo", 5.50m));
+            produtos.Add(new Produto("Suco Natural (300ml)", 4.00m));
+            produtos.Add(new Produto("Refrigerante Lata", 4.50m));
+            produtos.Add(new Produto("Hambúrguer Simples", 8.00m));
+            produtos.Add(new Produto("Hambúrguer com Queijo", 9.00m));
+            produtos.Add(new Produto("X-Tudo", 12.00m));
+            produtos.Add(new Produto("Água Mineral (500ml)", 2.50m));
 
-            List<string> items = new List<string>()
-               {
-                   "Pão de Queijo - R$ 3,50",
-                   "Coxinha - R$ 5,00",
-                   "Pastel de Carne - R$ 6,00",
-                   "Pastel de Queijo - R$ 5,50",
-                   "Suco Natural (300ml) - R$ 4,00",
-                   "Refrigerante Lata - R$ 4,50",
-                   "Hambúrguer Simples - R$ 8,00",
-                   "Hambúrguer com Queijo - R$ 9,00",
-                   "X-Tudo - R$ 12,00",
-                   "Água Mineral (500ml) - R$ 2,50"
-               };
-
-            foreach (var item in items)
+            foreach (var produto in produtos)
             {
-                listBox1.Items.Add(item);
+                listBox1.Items.Add(produto);
             }
 
         }
@@ -55,214 +58,144 @@ namespace WinFormsApp1
             {
                 listBox2.Items.Add(textBox1.Text);
                 textBox1.Clear();
+                AtualizarTotal();
+                MostrarTotal();
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            while (listBox2.SelectedItems.Count > 0)
             {
-                while (listBox2.SelectedItems.Count > 0)
-                {
-                    listBox2.Items.Remove(listBox2.SelectedItems[0]);
-                }
+                listBox2.Items.Remove(listBox2.SelectedItems[0]);
             }
-
+            MostrarTotal();
         }
         private void button3_Click(object sender, EventArgs e)
-
         {
-
+            foreach (var item in listBox1.SelectedItems)
             {
-                foreach (var item in listBox1.SelectedItems)
+                string itemComQuantidade = $"{item} - Quantidade: {numericUpDown1.Value}";
+                if (!listBox2.Items.Contains(itemComQuantidade))
                 {
-                    string itemComQuantidade = $"{item} - Quantidade: {numericUpDown1.Value}";
-                    if (!listBox2.Items.Contains(itemComQuantidade))
-                    {
-                        listBox2.Items.Add(itemComQuantidade);
-                    }
+                    listBox2.Items.Add(itemComQuantidade);
                 }
+                MostrarTotal();
             }
 
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-
-
-        {
-            decimal total = 0m;
-            var culture = new CultureInfo("pt-BR");
-
-            foreach (var item in listBox2.Items)
-            {
-                string itemText = item.ToString();
-
-                var match = Regex.Match(itemText, @"R\$ (\d+,\d{2}).*Quantidade: (\d+)");
-                if (match.Success)
-                {
-                    decimal preco = decimal.Parse(match.Groups[1].Value, culture);
-                    int quantidade = int.Parse(match.Groups[2].Value, culture);
-
-                    total += preco * quantidade;
-                }
-            }
-
-
-            string totalStr = total.ToString("F2", culture);
-
-
-            MessageBox.Show(
-                $"Pagamento em dinheiro confirmado!\nValor pago: R$ {totalStr}",
-                "Pagamento",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            );
-
-
-            labelTotal.Text = $"Total: R$ {totalStr}";
         }
 
 
-
-
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
-        private void SalvarHistoricoPedido(List<string> itens, decimal total)
-        {
-            string caminho = "historico_pedidos.txt";
-            string dataHora = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Pedido em {dataHora}:");
-            foreach (var item in itens)
-            {
-                sb.AppendLine($"- {item}");
-            }
-            sb.AppendLine($"Total: R$ {total:F2}");
-            sb.AppendLine(new string('-', 40));
-
-
-            File.AppendAllText(caminho, sb.ToString());
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-
-        {
-            Form3 form = new Form3();
-            form.Show();
-
-
-            decimal total = 0;
-            List<string> itensPedido = new List<string>();
-            foreach (var item in listBox2.Items)
-            {
-                itensPedido.Add(item.ToString());
-
-
-                int idxPreco = item.ToString().IndexOf("R$");
-                if (idxPreco >= 0)
-                {
-                    string precoStr = item.ToString().Substring(idxPreco + 2).Trim();
-                    precoStr = precoStr.Split(' ')[0].Replace(",", ".");
-                    decimal preco = 0;
-                    decimal.TryParse(precoStr, out preco);
-
-                    int quantidade = 1;
-                    int idxQtd = item.ToString().IndexOf("Quantidade:");
-                    if (idxQtd >= 0)
-                    {
-                        string qtdStr = item.ToString().Substring(idxQtd + 11).Trim();
-                        int.TryParse(qtdStr, out quantidade);
-                    }
-
-                    total += preco * quantidade;
-                }
-            }
-
-            SalvarHistoricoPedido(itensPedido, total);
-
-
-            listBox2.Items.Clear();
-
-            MessageBox.Show("Pedido enviado e salvo no histórico!");
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            decimal total = 0m; 
-            var culture = new CultureInfo("pt-BR");
-
-            foreach (var item in listBox2.Items)
-            {
-                string itemText = item.ToString();
-          
-                var match = Regex.Match(itemText, @"R\$ (\d+,\d{2}).*Quantidade: (\d+)");
-                if (match.Success)
-                {
-                    
-                    decimal preco = decimal.Parse(match.Groups[1].Value, culture);
-                    int quantidade = int.Parse(match.Groups[2].Value, culture);
-
-                    total += preco * quantidade;
-                }
-            }
-
-     
-            string totalStr = total.ToString("F2", culture);
-
-            MessageBox.Show($"Pagamento em cartão o valor é de R$ {totalStr}");
-        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedPaymentMethod = comboBox1.SelectedItem?.ToString();
+            {
 
-            if (selectedPaymentMethod == "Cartao")
-            {
-                MessageBox.Show("Pagamento em cartão confirmado!");
+                if (selectedPaymentMethod == "Cartão")
+                {
+                    decimal preco = MostrarTotal();
+                    MessageBox.Show("Pagamento em cartão - Débito\n Valor - {total:F2}");
+                       
+                     
+                }
             }
-            else if (selectedPaymentMethod == "Dinheiro")
+
+
+        }
+
+
+
+
+        private decimal ObterTotal()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+        private void AtualizarTotal()
+        { }
+
+
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            // button4
+            // 
+            button4 = new Button();
+            button4.Location = new Point(920, 420); // ajuste a posição conforme necessário
+            button4.Name = "button4";
+            button4.Size = new Size(100, 30);
+            button4.TabIndex = 21;
+            button4.Text = "Calcular Troco";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click_1;
+            Controls.Add(button4);
+
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+        }
+        public class Produto
+        {
+            public string Nome { get; set; }
+            public decimal Preco { get; set; }
+
+            public Produto(string nome, decimal preco)
             {
-                MessageBox.Show("Pagamento em dinheiro confirmado!");
+                Nome = nome;
+                Preco = preco;
             }
-            else
+
+            public override string ToString()
             {
-                MessageBox.Show("Pagamento em pix confirmado!");
+                return $"{Nome} - R$ {Preco:F2}";
             }
         }
 
-   
-       
-            
-        
 
-           
+
+        private decimal MostrarTotal()
+        {
+            decimal total = 0m;
+            foreach (var item in listBox2.Items)
+            {
+                string texto = item.ToString();
+                // Tenta extrair preço e quantidade do texto
+                var match = Regex.Match(texto, @"R\$ (\d+,\d{2}).*Quantidade: (\d+)");
+                if (match.Success)
+                {
+                    // Soma preço * quantidade
+                    decimal preco = decimal.Parse(match.Groups[1].Value, new CultureInfo("pt-BR"));
+                    int quantidade = int.Parse(match.Groups[2].Value);
+                    total += preco * quantidade;
+                }
+                else
+                {
+                    // Caso não tenha quantidade, soma só o preço unitário
+                    int idx = texto.IndexOf("R$");
+                    if (idx >= 0)
+                    {
+                        string precoStr = texto.Substring(idx + 2).Trim().Split(' ')[0].Replace(",", ".");
+                        if (decimal.TryParse(precoStr, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal preco))
+                            total += preco;
+                    }
+                }
+            }
+            Resultado.Text = $"Total selecionado: R$ {total:F2}";
+            return total;
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            MostrarTotal();
         }
     }
-
-
-
-
-            
-
-    
-
+}
 
