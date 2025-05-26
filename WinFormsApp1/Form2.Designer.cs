@@ -14,11 +14,6 @@ namespace WinFormsApp1
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
@@ -159,6 +154,7 @@ namespace WinFormsApp1
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(100, 23);
             textBox2.TabIndex = 19;
+            textBox2.TextChanged += textBox2_TextChanged_1;
             // 
             // button4
             // 
@@ -231,6 +227,7 @@ namespace WinFormsApp1
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             MostrarTotal();
         }
 

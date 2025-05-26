@@ -18,6 +18,8 @@ namespace WinFormsApp1
         private decimal total;
         private List<Produto> produtos = new List<Produto>();
         private CheckBox checkBox1; // Replace 'object' with 'CheckBox' for the checkBox1 field
+        private decimal saldoCaixa = 100.00m; // Valor inicial do caixa, ajuste conforme necessário
+        private Label labelCaixa;
 
         // Update the constructor to initialize checkBox1 properly
         public Form2()
@@ -192,7 +194,7 @@ namespace WinFormsApp1
                 {
                     decimal preco = MostrarTotal();
                     MessageBox.Show($"Pagamento em dinheiro\nValor - {preco:F2}");
-
+                    MessageBox.Show("Por favor digite o valor no campo abaixo");
                 }
                 else if (comboBox1.SelectedIndex == 2)
                 {
@@ -210,17 +212,43 @@ namespace WinFormsApp1
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
-
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            
+            decimal troco = 0;
+            decimal recebido = 0; // Declare 'recebido' before using it  
+            decimal totalPedido = MostrarTotal();
+
+            if (decimal.TryParse(textBox2.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out recebido))
+            {
+                if (recebido < totalPedido)
+                {
+                    MessageBox.Show("Valor recebido é menor que o total!");
+                    return;
+                }
+                troco = recebido - totalPedido;
+                MessageBox.Show($"Troco: R$ {troco:F2}");
+
+                // Subtrai o troco do caixa  
+                saldoCaixa += recebido; // Adiciona o valor recebido ao caixa  
+                saldoCaixa -= troco;    // Subtrai o troco dado ao cliente  
+                MessageBox.Show($"Saldo do caixa: R$ {saldoCaixa:F2}");
+            }
+            else if (saldoCaixa < 30)
+            {
+                MessageBox.Show("Saldo do caixa baixo!");
+            }
+            else
+            {
+                MessageBox.Show("Digite um valor recebido válido!");
+                return;
+            }
 
             string extrato = string.Join("\n", listBox2.Items.Cast<string>());
             if (listBox2.Items.Count == 0)
             {
-                MessageBox.Show("nehum item escolhido\n por favor adicione um item ao pedido");
+                MessageBox.Show("Nenhum item escolhido\nPor favor adicione um item ao pedido");
                 return;
             }
             if (textBox1.Text == "")
@@ -235,20 +263,23 @@ namespace WinFormsApp1
 
             MessageBox.Show(mensagem);
 
-            if (checkBox1.Checked)
+            if (Viagem.Checked)
             {
-                MessageBox.Show($"{mensagem}\nPara viagem!");
+                MessageBox.Show(
+                    $"Forma de pagamento: {comboBox1.SelectedItem}\n\n" +
+                    $"Itens escolhidos:\n{extrato}\n\n" +
+                    $"Total: R$ {MostrarTotal():F2}\n Para viagem!");
+                labelCaixa.Text = $"Saldo do caixa: R$ {saldoCaixa:F2}";
             }
-
-
-
-
         }
 
+        private void textBox2_TextChanged_1(object sender, EventArgs e)
+        {
 
+        }
     }
-          
 
-        }
+
+}
 
 
