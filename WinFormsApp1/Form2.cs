@@ -3,35 +3,30 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
     public partial class Form2 : Form
     {
-        private decimal total;
+        private decimal saldoCaixa = 100.00m;
         private List<Produto> produtos = new List<Produto>();
-        private CheckBox checkBox1; // Replace 'object' with 'CheckBox' for the checkBox1 field
-        private decimal saldoCaixa = 100.00m; // Valor inicial do caixa, ajuste conforme necessário
+        private CheckBox checkBox1;
         private Label labelCaixa;
 
-        // Update the constructor to initialize checkBox1 properly
         public Form2()
         {
             InitializeComponent();
             AdicionarProdutos();
-            List<Produto> produtos = new List<Produto>();
 
-            // Assuming checkBox1 is added via the designer, ensure it is cast correctly
             checkBox1 = (CheckBox)this.Controls.Find("checkBox1", true).FirstOrDefault();
+            labelCaixa = (Label)this.Controls.Find("labelCaixa", true).FirstOrDefault();
+            if (labelCaixa != null)
+                labelCaixa.Text = $"Saldo do caixa: R$ {saldoCaixa:F2}";
         }
-
 
         public void AdicionarProdutos()
         {
@@ -50,21 +45,15 @@ namespace WinFormsApp1
             {
                 listBox1.Items.Add(produto);
             }
-
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e) { }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(textBox1.Text))
             {
                 listBox2.Items.Add(textBox1.Text);
-
-
                 MostrarTotal();
             }
         }
@@ -77,6 +66,7 @@ namespace WinFormsApp1
             }
             MostrarTotal();
         }
+
         private void button3_Click(object sender, EventArgs e)
         {
             foreach (var item in listBox1.SelectedItems)
@@ -90,26 +80,115 @@ namespace WinFormsApp1
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e) { }
+
+        private void button5_Click(object sender, EventArgs e)
         {
+            string selectedPaymentMethod = comboBox1.SelectedItem?.ToString();
 
-            // button4
-            // 
-            button4 = new Button();
-            button4.Location = new Point(920, 420); // ajuste a posição conforme necessário
-            button4.Name = "button4";
-            button4.Size = new Size(100, 30);
-            button4.TabIndex = 21;
-            button4.Text = "Calcular Troco";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click_1;
-            Controls.Add(button4);
+            decimal preco = MostrarTotal();
 
+            if (comboBox1.SelectedIndex == 0)
+            {
+                MessageBox.Show(this, $"Pagamento em cartão - Débito\nValor - {preco:F2}");
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                MessageBox.Show(this, $"Pagamento em dinheiro\nValor - {preco:F2}");
+                MessageBox.Show(this, "Por favor digite o valor no campo abaixo");
+            }
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                MessageBox.Show(this, $"Pagamento em Pix\nValor - {preco:F2}");
+            }
         }
 
-        private void button4_Click_1(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)
         {
+            decimal troco = 0;
+            decimal recebido = 0;
+            decimal totalPedido = MostrarTotal();
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show(this, "Por favor adicione um nome ao pedido!");
+                textBox1.Focus();
+                return;
+            }
+
+            if (listBox2.Items.Count == 0)
+            {
+                MessageBox.Show(this, "Nenhum item escolhido.\nPor favor, adicione um item ao pedido.");
+                listBox1.Focus();
+                return;
+            }
+
+            if (comboBox1.SelectedIndex < 0)
+            {
+                MessageBox.Show(this, "Selecione uma forma de pagamento!");
+                comboBox1.DroppedDown = true;
+                return;
+            }
+
+            if (comboBox1.SelectedItem?.ToString() == "Dinheiro")
+            {
+                if (string.IsNullOrWhiteSpace(textBox2.Text) ||
+                    !decimal.TryParse(textBox2.Text.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out recebido))
+                {
+                    MessageBox.Show(this, "Digite um valor recebido válido!");
+                    textBox2.Focus();
+                    return;
+                }
+
+                if (recebido < totalPedido)
+                {
+                    MessageBox.Show(this, "Valor recebido é menor que o total!");
+                    textBox2.Focus();
+                    return;
+                }
+
+                troco = recebido - totalPedido;
+            }
+            else
+            {
+                recebido = totalPedido;
+            }
+
+            saldoCaixa += totalPedido;
+            if (labelCaixa != null)
+                labelCaixa.Text = $"Saldo do caixa: R$ {saldoCaixa:F2}";
+
+            if (saldoCaixa < 30)
+            {
+                MessageBox.Show(this, "Saldo do caixa baixo!");
+            }
+
+            MessageBox.Show(this, $"Troco: R$ {troco:F2}");
+
+            string extrato = string.Join("\n", listBox2.Items.Cast<string>());
+            string formaPagamento = comboBox1.SelectedItem?.ToString() ?? "Não selecionado";
+            string dataHora = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            string viagem = Viagem.Checked ? "\nPara viagem!" : "";
+
+            string mensagem = $"Forma de pagamento: {formaPagamento}\n\nItens escolhidos:\n{extrato}\n\n" +
+                              $"Total: R$ {totalPedido:F2}\nData/Hora: {dataHora}{viagem}";
+
+            MessageBox.Show(this, mensagem);
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            MostrarTotal();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e) { }
+
+        private void textBox2_TextChanged(object sender, EventArgs e) { }
+
+        private void textBox2_TextChanged_1(object sender, EventArgs e) { }
+
         public class Produto
         {
             public string Nome { get; set; }
@@ -127,8 +206,6 @@ namespace WinFormsApp1
             }
         }
 
-
-
         private decimal MostrarTotal()
         {
             decimal total = 0m;
@@ -136,17 +213,15 @@ namespace WinFormsApp1
             {
                 string texto = item.ToString();
 
-                var match = Regex.Match(texto, @"R\$ (\d+,\d{2}).*Quantidade: (\d+)");
+                var match = Regex.Match(texto, @"R\$ (\d+,\d{2})\D*Quantidade: (\d+)");
                 if (match.Success)
                 {
-                    // Soma preço * quantidade
                     decimal preco = decimal.Parse(match.Groups[1].Value, new CultureInfo("pt-BR"));
                     int quantidade = int.Parse(match.Groups[2].Value);
                     total += preco * quantidade;
                 }
                 else
                 {
-                    // Caso não tenha quantidade, soma só o preço unitário
                     int idx = texto.IndexOf("R$");
                     if (idx >= 0)
                     {
@@ -158,128 +233,22 @@ namespace WinFormsApp1
             }
             Resultado.Text = $"Total selecionado: R$ {total:F2}";
             return total;
-
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            MostrarTotal();
-        }
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e) { }
 
-        private void Cartão_CheckedChanged(object sender, EventArgs e)
-        {
+        private void labelCaixa_Click(object sender, EventArgs e) { }
 
-        }
+        private void comboBox1_SelectedIndexChanged_2(object sender, EventArgs e) { }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged_3(object sender, EventArgs e)
         {
 
         }
-
-        private void button5_Click(object sender, EventArgs e)
+        public void LimparPedido()
         {
-
-            {
-                string selectedPaymentMethod = comboBox1.SelectedItem?.ToString();
-
-                if (comboBox1.SelectedIndex == 0)
-
-                {
-                    decimal preco = MostrarTotal();
-                    MessageBox.Show($"Pagamento em cartão - Débito\nValor - {preco:F2}");
-
-                }
-
-                else if (comboBox1.SelectedIndex == 1)
-                {
-                    decimal preco = MostrarTotal();
-                    MessageBox.Show($"Pagamento em dinheiro\nValor - {preco:F2}");
-                    MessageBox.Show("Por favor digite o valor no campo abaixo");
-                }
-                else if (comboBox1.SelectedIndex == 2)
-                {
-                    decimal preco = MostrarTotal();
-                    MessageBox.Show($"Pagamento em Pix\nValor - {preco:F2}");
-                }
-            }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            decimal troco = 0;
-            decimal recebido = 0; // Declare 'recebido' before using it  
-            decimal totalPedido = MostrarTotal();
-
-            if (decimal.TryParse(textBox2.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out recebido))
-            {
-                if (recebido < totalPedido)
-                {
-                    MessageBox.Show("Valor recebido é menor que o total!");
-                    return;
-                }
-                troco = recebido - totalPedido;
-                MessageBox.Show($"Troco: R$ {troco:F2}");
-
-                // Subtrai o troco do caixa  
-                saldoCaixa += recebido; // Adiciona o valor recebido ao caixa  
-                saldoCaixa -= troco;    // Subtrai o troco dado ao cliente  
-                MessageBox.Show($"Saldo do caixa: R$ {saldoCaixa:F2}");
-            }
-            else if (saldoCaixa < 30)
-            {
-                MessageBox.Show("Saldo do caixa baixo!");
-            }
-            else
-            {
-                MessageBox.Show("Digite um valor recebido válido!");
-                return;
-            }
-
-            string extrato = string.Join("\n", listBox2.Items.Cast<string>());
-            if (listBox2.Items.Count == 0)
-            {
-                MessageBox.Show("Nenhum item escolhido\nPor favor adicione um item ao pedido");
-                return;
-            }
-            if (textBox1.Text == "")
-            {
-                MessageBox.Show("Nenhum nome adicionado ao pedido!");
-                return;
-            }
-            string formaPagamento = comboBox1.SelectedItem?.ToString() ?? "Não selecionado";
-            string v = $"Itens escolhidos:\n{extrato}\n\n";
-            string total = $"Total: R$ {MostrarTotal():F2}";
-            string mensagem = $"Forma de pagamento: {formaPagamento}\n\n{v}{total}";
-
-            MessageBox.Show(mensagem);
-
-            if (Viagem.Checked)
-            {
-                MessageBox.Show(
-                    $"Forma de pagamento: {comboBox1.SelectedItem}\n\n" +
-                    $"Itens escolhidos:\n{extrato}\n\n" +
-                    $"Total: R$ {MostrarTotal():F2}\n Para viagem!");
-                labelCaixa.Text = $"Saldo do caixa: R$ {saldoCaixa:F2}";
-            }
-        }
-
-        private void textBox2_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
     }
-
-
-}
-
+    }
 
