@@ -39,9 +39,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(1101, 562);
+            button1.Location = new Point(963, 422);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(168, 87);
+            button1.Size = new Size(147, 65);
             button1.TabIndex = 0;
             button1.Text = "Começar";
             button1.UseVisualStyleBackColor = true;
@@ -55,24 +56,27 @@
             panel1.Controls.Add(button2);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(187, 703);
+            panel1.Size = new Size(164, 527);
             panel1.TabIndex = 2;
             // 
             // button5
             // 
-            button5.Location = new Point(41, 221);
+            button5.Location = new Point(36, 158);
+            button5.Margin = new Padding(3, 2, 3, 2);
             button5.Name = "button5";
-            button5.Size = new Size(94, 29);
+            button5.Size = new Size(82, 22);
             button5.TabIndex = 3;
             button5.Text = "Histórico";
             button5.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            button4.Location = new Point(41, 134);
+            button4.Location = new Point(36, 100);
+            button4.Margin = new Padding(3, 2, 3, 2);
             button4.Name = "button4";
-            button4.Size = new Size(94, 29);
+            button4.Size = new Size(82, 22);
             button4.TabIndex = 3;
             button4.Text = "Gerenciar";
             button4.UseVisualStyleBackColor = true;
@@ -83,9 +87,10 @@
             button3.BackColor = Color.Transparent;
             button3.FlatStyle = FlatStyle.Flat;
             button3.ForeColor = Color.Black;
-            button3.Location = new Point(41, 61);
+            button3.Location = new Point(36, 46);
+            button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(94, 29);
+            button3.Size = new Size(82, 22);
             button3.TabIndex = 3;
             button3.Text = "Estoque";
             button3.UseVisualStyleBackColor = false;
@@ -93,9 +98,10 @@
             // 
             // button2
             // 
-            button2.Location = new Point(41, 647);
+            button2.Location = new Point(36, 485);
+            button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
-            button2.Size = new Size(94, 29);
+            button2.Size = new Size(82, 22);
             button2.TabIndex = 3;
             button2.Text = "Sair";
             button2.UseVisualStyleBackColor = true;
@@ -103,12 +109,13 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1329, 703);
+            ClientSize = new Size(1163, 527);
             Controls.Add(panel1);
             Controls.Add(button1);
             ForeColor = Color.Transparent;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
             Text = "Form1";
             panel1.ResumeLayout(false);

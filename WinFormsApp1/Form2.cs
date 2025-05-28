@@ -80,7 +80,13 @@ namespace WinFormsApp1
             }
         }
 
-        private void button4_Click(object sender, EventArgs e) { }
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -174,6 +180,8 @@ namespace WinFormsApp1
                               $"Total: R$ {totalPedido:F2}\nData/Hora: {dataHora}{viagem}";
 
             MessageBox.Show(this, mensagem);
+            LimparPedido();
+            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { }
@@ -245,10 +253,21 @@ namespace WinFormsApp1
         {
 
         }
-        public void LimparPedido()
+        private void  LimparPedido()
         {
-        }
+            textBox1.Clear();
+            textBox2.Clear();
+            listBox2.ClearSelected();
+            LimparPedido();
 
+        }
+ 
+
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
     }
-    }
+}
 

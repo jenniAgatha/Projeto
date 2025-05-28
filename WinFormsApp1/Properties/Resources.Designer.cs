@@ -83,9 +83,39 @@ namespace WinFormsApp1.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Inserir_um_título__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("Inserir um título (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Inserir_um_título__1_2 {
+            get {
+                object obj = ResourceManager.GetObject("Inserir um título (1)2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Inserir_um_título__3_ {
             get {
                 object obj = ResourceManager.GetObject("Inserir um título (3)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Inserir_um_título__3_1 {
+            get {
+                object obj = ResourceManager.GetObject("Inserir um título (3)1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
