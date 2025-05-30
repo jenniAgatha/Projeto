@@ -16,7 +16,7 @@ namespace WinFormsApp1
         {
         }
 
-        public Form3(List<string>itensPedidos)
+        public Form3(List<string> itensPedidos)
         {
             InitializeComponent();
             listBox1.Items.Clear();
@@ -26,15 +26,25 @@ namespace WinFormsApp1
             }
 
         }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        public class Produto
         {
+            public string Nome { get; set; }
+            public decimal Preco { get; set; }
 
-        }
+            public Produto(string nome, decimal preco)
+            {
+                Nome = nome;
+                Preco = preco;
+            }
+            private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+            {
 
-        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
+            }
 
+            private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+            {
+
+            }
         }
     }
 }

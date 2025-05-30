@@ -26,6 +26,7 @@ namespace WinFormsApp1
             labelCaixa = (Label)this.Controls.Find("labelCaixa", true).FirstOrDefault();
             if (labelCaixa != null)
                 labelCaixa.Text = $"Saldo do caixa: R$ {saldoCaixa:F2}";
+            numericUpDown1.Minimum = 1;
         }
 
         public void AdicionarProdutos()
@@ -181,7 +182,7 @@ namespace WinFormsApp1
 
             MessageBox.Show(this, mensagem);
             LimparPedido();
-            
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { }
@@ -253,21 +254,75 @@ namespace WinFormsApp1
         {
 
         }
-        private void  LimparPedido()
+        private void LimparPedido()
         {
             textBox1.Clear();
             textBox2.Clear();
             listBox2.ClearSelected();
-            LimparPedido();
+
 
         }
- 
+
 
 
         private void Form2_Load(object sender, EventArgs e)
         {
 
         }
+        bool menUAberto = true;
+        int larguraMaxima = 200;
+        int larguraMinima = 60;
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void timerMenu_Tick(object sender, EventArgs e)
+        {
+            if (menUAberto)
+            {
+                panelMenuLateral.Width -= 20;
+                if (panelMenuLateral.Width < larguraMinima)
+                {
+
+                    timerMenu.Stop();
+                    menUAberto = false;
+                }
+
+            }
+            else
+            {
+                panelMenuLateral.Width += 20;
+                if (panelMenuLateral.Width > larguraMaxima)
+                {
+                    timerMenu.Stop();
+                    menUAberto = true;
+                }
+
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            timerMenu.Start();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3(listBox2.Items.Cast<string>().ToList());
+            form3.ShowDialog();
+        }
+
+        private void Form2_Load_1(object sender, EventArgs e)
+        {
+            Button btnMenu = new Button();
+            btnMenu.Text = "Balcão ";
+            btnMenu.Size = new Size(180, 40); 
+            btnMenu.Location = new Point(10, 10);
+            panelMenuLateral.Controls.Add(btnMenu);
+            panelMenuLateral.Dock = DockStyle.Left;
+        }
     }
 }
+
 

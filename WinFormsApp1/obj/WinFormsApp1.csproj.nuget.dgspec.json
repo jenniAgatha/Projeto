@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\25163095\\source\\repos\\Projeto\\Projetofinal0.1\\WinFormsApp1\\WinFormsApp1.csproj": {}
+    "L:\\Projeto\\WinFormsApp1\\WinFormsApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\25163095\\source\\repos\\Projeto\\Projetofinal0.1\\WinFormsApp1\\WinFormsApp1.csproj": {
+    "L:\\Projeto\\WinFormsApp1\\WinFormsApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\25163095\\source\\repos\\Projeto\\Projetofinal0.1\\WinFormsApp1\\WinFormsApp1.csproj",
+        "projectUniqueName": "L:\\Projeto\\WinFormsApp1\\WinFormsApp1.csproj",
         "projectName": "WinFormsApp1",
-        "projectPath": "C:\\Users\\25163095\\source\\repos\\Projeto\\Projetofinal0.1\\WinFormsApp1\\WinFormsApp1.csproj",
+        "projectPath": "L:\\Projeto\\WinFormsApp1\\WinFormsApp1.csproj",
         "packagesPath": "C:\\Users\\25163095\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\25163095\\source\\repos\\Projeto\\Projetofinal0.1\\WinFormsApp1\\obj\\",
+        "outputPath": "L:\\Projeto\\WinFormsApp1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
