@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WinFormsApp1
@@ -14,37 +9,91 @@ namespace WinFormsApp1
     {
         public Form3()
         {
-        }
-
-        public Form3(List<string> itensPedidos)
-        {
             InitializeComponent();
-            listBox1.Items.Clear();
-            foreach (var item in itensPedidos)
-            {
-                listBox1.Items.Add(item);
-            }
-
+            AtualizarListas();
         }
-        public class Produto
+
+        private void AtualizarListas()
         {
-            public string Nome { get; set; }
-            public decimal Preco { get; set; }
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
+            listBox3.Items.Clear();
 
-            public Produto(string nome, decimal preco)
+            foreach (var item in PedidosStore.Pedidos)
+                listBox1.Items.Add(item);
+
+            foreach (var item in PedidosStore.ItensSelecionados)
+                listBox2.Items.Add(item);
+
+            foreach (var item in PedidosStore.ItensFinalizados)
+                listBox3.Items.Add(item);
+        }
+
+        // Mover da listBox1 (pendentes) → listBox2 (selecionados)
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var selecionados = listBox1.SelectedItems.Cast<object>().ToList();
+
+            foreach (var item in selecionados)
             {
-                Nome = nome;
-                Preco = preco;
+                string texto = item.ToString();
+
+                if (!listBox2.Items.Contains(texto))
+                {
+                    listBox2.Items.Add(texto);
+                    if (!PedidosStore.ItensSelecionados.Contains(texto))
+                        PedidosStore.ItensSelecionados.Add(texto);
+                }
+
+                listBox1.Items.Remove(texto);
+                PedidosStore.Pedidos.Remove(texto);
             }
-            private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        }
+
+        // Mover da listBox2 (selecionados) → listBox3 (finalizados)
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var selecionados = listBox2.SelectedItems.Cast<object>().ToList();
+
+            foreach (var item in selecionados)
             {
+                string texto = item.ToString();
 
+                if (!listBox3.Items.Contains(texto))
+                {
+                    listBox3.Items.Add(texto);
+                    if (!PedidosStore.ItensFinalizados.Contains(texto))
+                        PedidosStore.ItensFinalizados.Add(texto);
+                }
+
+                listBox2.Items.Remove(texto);
+                PedidosStore.ItensSelecionados.Remove(texto);
             }
+        }
 
-            private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
-            {
+        // Esconder o Form (sem fechar)
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+    }
 
-            }
+    public static class PedidosStore
+    {
+        public static List<string> Pedidos { get; } = new List<string>();
+        public static List<string> ItensSelecionados { get; } = new List<string>();
+        public static List<string> ItensFinalizados { get; } = new List<string>();
+    }
+
+    public class Produto
+    {
+        public string Nome { get; set; }
+        public decimal Preco { get; set; }
+
+        public Produto(string nome, decimal preco)
+        {
+            Nome = nome;
+            Preco = preco;
         }
     }
 }

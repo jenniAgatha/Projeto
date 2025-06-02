@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static WinFormsApp1.Form3;
 
 namespace WinFormsApp1
 {
@@ -20,14 +21,15 @@ namespace WinFormsApp1
         public Form2()
         {
             InitializeComponent();
+            panelMenuLateral.Width = larguraMinima; // começa fechado
             AdicionarProdutos();
 
-            checkBox1 = (CheckBox)this.Controls.Find("checkBox1", true).FirstOrDefault();
             labelCaixa = (Label)this.Controls.Find("labelCaixa", true).FirstOrDefault();
             if (labelCaixa != null)
                 labelCaixa.Text = $"Saldo do caixa: R$ {saldoCaixa:F2}";
-            numericUpDown1.Minimum = 1;
         }
+
+
 
         public void AdicionarProdutos()
         {
@@ -54,6 +56,7 @@ namespace WinFormsApp1
         {
             if (!string.IsNullOrWhiteSpace(textBox1.Text))
             {
+
                 listBox2.Items.Add(textBox1.Text);
                 MostrarTotal();
             }
@@ -181,6 +184,9 @@ namespace WinFormsApp1
                               $"Total: R$ {totalPedido:F2}\nData/Hora: {dataHora}{viagem}";
 
             MessageBox.Show(this, mensagem);
+            string pedido = $"Pedido -> {string.Join(", ", listBox2.Items.Cast<string>())}";
+            PedidosStore.Pedidos.Add(pedido);
+
             LimparPedido();
 
         }
@@ -269,9 +275,14 @@ namespace WinFormsApp1
         {
 
         }
-        bool menUAberto = true;
+        // bool menUAberto = true;
         int larguraMaxima = 200;
-        int larguraMinima = 60;
+        int larguraMinima = 0; // valor mínimo visível para o menu fechado
+        private bool menuAberto = false;
+
+
+
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -279,26 +290,25 @@ namespace WinFormsApp1
 
         private void timerMenu_Tick(object sender, EventArgs e)
         {
-            if (menUAberto)
+            if (menuAberto)
             {
                 panelMenuLateral.Width -= 20;
-                if (panelMenuLateral.Width < larguraMinima)
+                if (panelMenuLateral.Width <= larguraMinima)
                 {
-
                     timerMenu.Stop();
-                    menUAberto = false;
+                    panelMenuLateral.Width = larguraMinima;
+                    menuAberto = false;
                 }
-
             }
             else
             {
                 panelMenuLateral.Width += 20;
-                if (panelMenuLateral.Width > larguraMaxima)
+                if (panelMenuLateral.Width >= larguraMaxima)
                 {
                     timerMenu.Stop();
-                    menUAberto = true;
+                    panelMenuLateral.Width = larguraMaxima;
+                    menuAberto = true;
                 }
-
             }
         }
 
@@ -309,7 +319,7 @@ namespace WinFormsApp1
 
         private void button8_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3(listBox2.Items.Cast<string>().ToList());
+            Form3 form3 = new Form3();
             form3.ShowDialog();
         }
 
@@ -317,10 +327,15 @@ namespace WinFormsApp1
         {
             Button btnMenu = new Button();
             btnMenu.Text = "Balcão ";
-            btnMenu.Size = new Size(180, 40); 
+            btnMenu.Size = new Size(180, 40);
             btnMenu.Location = new Point(10, 10);
             panelMenuLateral.Controls.Add(btnMenu);
             panelMenuLateral.Dock = DockStyle.Left;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
