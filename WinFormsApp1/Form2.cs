@@ -325,16 +325,31 @@ namespace WinFormsApp1
 
         private void Form2_Load_1(object sender, EventArgs e)
         {
-           // Button btnMenu = new Button();
-          //  btnMenu.Text = "Balcão ";
-           // btnMenu.Size = new Size(180, 40);
-          // btnMenu.Location = new Point(10, 10);
-           // panelMenuLateral.Controls.Add(btnMenu);
+            // Button btnMenu = new Button();
+            //  btnMenu.Text = "Balcão ";
+            // btnMenu.Size = new Size(180, 40);
+            // btnMenu.Location = new Point(10, 10);
+            // panelMenuLateral.Controls.Add(btnMenu);
             panelMenuLateral.Dock = DockStyle.Left;
-     
+
         }
 
         private void button9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown1_ValueChanged_1(object sender, EventArgs e)
         {
 
         }

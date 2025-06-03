@@ -29,6 +29,7 @@ namespace WinFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
             listBox1 = new ListBox();
             listBox2 = new ListBox();
             listBox3 = new ListBox();
@@ -42,57 +43,72 @@ namespace WinFormsApp1
             // 
             // listBox1
             // 
+            listBox1.BackColor = Color.FromArgb(243, 241, 238);
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(38, 122);
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(67, 150);
+            listBox1.Margin = new Padding(3, 2, 3, 2);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(726, 244);
+            listBox1.Size = new Size(636, 199);
             listBox1.TabIndex = 0;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged_1;
             // 
             // listBox2
             // 
+            listBox2.BackColor = Color.FromArgb(243, 241, 238);
+            listBox2.ForeColor = SystemColors.WindowText;
             listBox2.FormattingEnabled = true;
-            listBox2.Location = new Point(56, 514);
-            listBox2.Margin = new Padding(3, 4, 3, 4);
+            listBox2.ItemHeight = 15;
+            listBox2.Location = new Point(67, 466);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(708, 244);
+            listBox2.Size = new Size(646, 199);
             listBox2.TabIndex = 1;
             // 
             // listBox3
             // 
+            listBox3.BackColor = Color.FromArgb(243, 241, 238);
             listBox3.FormattingEnabled = true;
-            listBox3.Location = new Point(955, 137);
-            listBox3.Margin = new Padding(3, 4, 3, 4);
+            listBox3.ItemHeight = 15;
+            listBox3.Location = new Point(937, 123);
             listBox3.Name = "listBox3";
-            listBox3.Size = new Size(399, 544);
+            listBox3.Size = new Size(309, 364);
             listBox3.TabIndex = 2;
             // 
             // button2
             // 
-            button2.Location = new Point(38, 396);
+            button2.BackColor = Color.FromArgb(225, 255, 35);
+            button2.FlatAppearance.BorderColor = Color.FromArgb(225, 255, 35);
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Location = new Point(93, 396);
+            button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
-            button2.Size = new Size(94, 29);
+            button2.Size = new Size(82, 22);
             button2.TabIndex = 4;
             button2.Text = "Preparar";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // button3
             // 
-            button3.Location = new Point(12, 12);
+            button3.BackColor = SystemColors.ActiveCaptionText;
+            button3.FlatAppearance.BorderColor = Color.Black;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.ForeColor = Color.FromArgb(225, 255, 35);
+            button3.Image = Properties.Resources.Design_sem_nome__1_;
+            button3.Location = new Point(30, 84);
+            button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(94, 29);
+            button3.Size = new Size(85, 33);
             button3.TabIndex = 5;
-            button3.Text = "Voltar";
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(38, 80);
+            label1.Location = new Point(71, 123);
             label1.Name = "label1";
-            label1.Size = new Size(42, 20);
+            label1.Size = new Size(34, 15);
             label1.TabIndex = 6;
             label1.Tag = "label1";
             label1.Text = "Pago";
@@ -100,36 +116,42 @@ namespace WinFormsApp1
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(56, 490);
+            label2.Location = new Point(67, 436);
             label2.Name = "label2";
-            label2.Size = new Size(86, 20);
+            label2.Size = new Size(68, 15);
             label2.TabIndex = 7;
             label2.Text = "Preparando";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(955, 102);
+            label3.Location = new Point(952, 84);
             label3.Name = "label3";
-            label3.Size = new Size(68, 20);
+            label3.Size = new Size(54, 15);
             label3.TabIndex = 8;
             label3.Text = "Entregue";
             // 
             // button4
             // 
-            button4.Location = new Point(56, 784);
+            button4.BackColor = Color.FromArgb(225, 255, 35);
+            button4.FlatAppearance.BorderColor = Color.FromArgb(225, 255, 35);
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Location = new Point(631, 705);
+            button4.Margin = new Padding(3, 2, 3, 2);
             button4.Name = "button4";
-            button4.Size = new Size(94, 29);
+            button4.Size = new Size(82, 22);
             button4.TabIndex = 9;
             button4.Text = "Entregar";
-            button4.UseVisualStyleBackColor = true;
+            button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
             // Form3
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1454, 863);
+            BackColor = SystemColors.ActiveCaption;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(1383, 747);
             Controls.Add(button4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -139,8 +161,10 @@ namespace WinFormsApp1
             Controls.Add(listBox3);
             Controls.Add(listBox2);
             Controls.Add(listBox1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Form3";
             Text = "Form3";
+            Load += Form3_Load;
             ResumeLayout(false);
             PerformLayout();
         }

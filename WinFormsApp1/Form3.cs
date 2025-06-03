@@ -29,7 +29,7 @@ namespace WinFormsApp1
                 listBox3.Items.Add(item);
         }
 
-      
+
         private void button2_Click(object sender, EventArgs e)
         {
             var selecionados = listBox1.SelectedItems.Cast<object>().ToList();
@@ -50,7 +50,7 @@ namespace WinFormsApp1
             }
         }
 
-        
+
         private void button4_Click(object sender, EventArgs e)
         {
             var selecionados = listBox2.SelectedItems.Cast<object>().ToList();
@@ -71,10 +71,15 @@ namespace WinFormsApp1
             }
         }
 
-        
+
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
         }
     }
 
