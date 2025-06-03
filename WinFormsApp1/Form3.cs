@@ -29,7 +29,7 @@ namespace WinFormsApp1
                 listBox3.Items.Add(item);
         }
 
-        // Mover da listBox1 (pendentes) → listBox2 (selecionados)
+      
         private void button2_Click(object sender, EventArgs e)
         {
             var selecionados = listBox1.SelectedItems.Cast<object>().ToList();
@@ -50,7 +50,7 @@ namespace WinFormsApp1
             }
         }
 
-        // Mover da listBox2 (selecionados) → listBox3 (finalizados)
+        
         private void button4_Click(object sender, EventArgs e)
         {
             var selecionados = listBox2.SelectedItems.Cast<object>().ToList();
@@ -71,7 +71,7 @@ namespace WinFormsApp1
             }
         }
 
-        // Esconder o Form (sem fechar)
+        
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();

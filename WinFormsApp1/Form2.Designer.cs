@@ -237,7 +237,7 @@ namespace WinFormsApp1
             // 
             button6.BackColor = Color.FromArgb(221, 251, 0);
             button6.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button6.Location = new Point(171, 22);
+            button6.Location = new Point(244, 25);
             button6.Name = "button6";
             button6.Size = new Size(46, 46);
             button6.TabIndex = 26;
