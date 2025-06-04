@@ -59,6 +59,7 @@ namespace WinFormsApp1
 
                 listBox2.Items.Add(textBox1.Text);
                 MostrarTotal();
+               
             }
         }
 
@@ -73,13 +74,26 @@ namespace WinFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            foreach (var item in listBox1.SelectedItems)
+            
+                foreach (var item in listBox1.SelectedItems)
             {
                 string itemComQuantidade = $"{item} - Quantidade: {numericUpDown1.Value}";
-                if (!listBox2.Items.Contains(itemComQuantidade))
+                numericUpDown1.Minimum = 1;
+            
+               if (string.IsNullOrWhiteSpace(textBox1.Text))
+                {
+                 MessageBox.Show(this, "Antes de começar por favor adicione um nome ao pedido!");return;
+                }
+                    
+                
+                 if (!listBox2.Items.Contains(itemComQuantidade))
                 {
                     listBox2.Items.Add(itemComQuantidade);
                 }
+                
+
+
+
                 MostrarTotal();
             }
         }
@@ -100,7 +114,7 @@ namespace WinFormsApp1
 
             if (comboBox1.SelectedIndex == 0)
             {
-                MessageBox.Show(this, $"Pagamento em cartão - Débito\nValor - {preco:F2}");
+                MessageBox.Show(this, $"Pagamento em cartão - \nValor - {preco:F2}");
             }
             else if (comboBox1.SelectedIndex == 1)
             {
@@ -111,6 +125,7 @@ namespace WinFormsApp1
             {
                 MessageBox.Show(this, $"Pagamento em Pix\nValor - {preco:F2}");
             }
+            
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -147,6 +162,7 @@ namespace WinFormsApp1
                 {
                     MessageBox.Show(this, "Digite um valor recebido válido!");
                     textBox2.Focus();
+                   
                     return;
                 }
 
@@ -173,7 +189,7 @@ namespace WinFormsApp1
                 MessageBox.Show(this, "Saldo do caixa baixo!");
             }
 
-            MessageBox.Show(this, $"Troco: R$ {troco:F2}");
+           MessageBox.Show(this, $"Troco: R$ {troco:F2}");
 
             string extrato = string.Join("\n", listBox2.Items.Cast<string>());
             string formaPagamento = comboBox1.SelectedItem?.ToString() ?? "Não selecionado";
@@ -188,7 +204,7 @@ namespace WinFormsApp1
             PedidosStore.Pedidos.Add(pedido);
 
             LimparPedido();
-
+           
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { }
@@ -249,6 +265,8 @@ namespace WinFormsApp1
             Resultado.Text = $"Total selecionado: R$ {total:F2}";
             return total;
         }
+      
+          
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e) { }
 
@@ -258,14 +276,22 @@ namespace WinFormsApp1
 
         private void comboBox1_SelectedIndexChanged_3(object sender, EventArgs e)
         {
+           // if (string.IsNullOrWhiteSpace(listBox2.Text))
+
+           // {
+          ////      MessageBox.Show(this, "Não é possível prosseguir sem itens adicionados!");return;
+                
+           // }
+            
+
+
 
         }
         private void LimparPedido()
         {
             textBox1.Clear();
             textBox2.Clear();
-            listBox2.ClearSelected();
-
+            listBox2.Items.Clear();
 
         }
 
@@ -277,7 +303,7 @@ namespace WinFormsApp1
         }
         // bool menUAberto = true;
         int larguraMaxima = 200;
-        int larguraMinima = 0; // valor mínimo visível para o menu fechado
+        int larguraMinima = 0; 
         private bool menuAberto = false;
 
 
@@ -350,6 +376,11 @@ namespace WinFormsApp1
         }
 
         private void numericUpDown1_ValueChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

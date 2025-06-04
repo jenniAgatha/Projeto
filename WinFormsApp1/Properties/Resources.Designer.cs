@@ -123,6 +123,26 @@ namespace WinFormsApp1.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Design_sem_nome__2_ {
+            get {
+                object obj = ResourceManager.GetObject("Design sem nome (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Design_sem_nome__3_ {
+            get {
+                object obj = ResourceManager.GetObject("Design sem nome (3)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Design_sem_nome__4_ {
             get {
                 object obj = ResourceManager.GetObject("Design sem nome (4)", resourceCulture);
@@ -136,6 +156,16 @@ namespace WinFormsApp1.Properties {
         internal static System.Drawing.Bitmap Design_sem_nome__5_ {
             get {
                 object obj = ResourceManager.GetObject("Design sem nome (5)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Design_sem_nome__5_1 {
+            get {
+                object obj = ResourceManager.GetObject("Design sem nome (5)1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
