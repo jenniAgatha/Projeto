@@ -47,6 +47,8 @@ namespace WinFormsApp1
             button9 = new Button();
             button8 = new Button();
             timerMenu = new System.Windows.Forms.Timer(components);
+            button10 = new Button();
+            button11 = new Button();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             panelMenuLateral.SuspendLayout();
             SuspendLayout();
@@ -260,6 +262,8 @@ namespace WinFormsApp1
             // panelMenuLateral
             // 
             panelMenuLateral.BackColor = Color.Black;
+            panelMenuLateral.Controls.Add(button11);
+            panelMenuLateral.Controls.Add(button10);
             panelMenuLateral.Controls.Add(button4);
             panelMenuLateral.Controls.Add(button9);
             panelMenuLateral.Controls.Add(button8);
@@ -314,6 +318,24 @@ namespace WinFormsApp1
             timerMenu.Interval = 10;
             timerMenu.Tick += timerMenu_Tick;
             // 
+            // button10
+            // 
+            button10.Location = new Point(40, 323);
+            button10.Name = "button10";
+            button10.Size = new Size(88, 28);
+            button10.TabIndex = 28;
+            button10.Text = "Estoque";
+            button10.UseVisualStyleBackColor = true;
+            // 
+            // button11
+            // 
+            button11.Location = new Point(40, 377);
+            button11.Name = "button11";
+            button11.Size = new Size(88, 27);
+            button11.TabIndex = 28;
+            button11.Text = "Sair";
+            button11.UseVisualStyleBackColor = true;
+            // 
             // Form2
             // 
             AccessibleName = "grgrg";
@@ -323,7 +345,6 @@ namespace WinFormsApp1
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(1345, 744);
-            Controls.Add(panelMenuLateral);
             Controls.Add(button6);
             Controls.Add(LabelCaixa);
             Controls.Add(Viagem);
@@ -340,6 +361,7 @@ namespace WinFormsApp1
             Controls.Add(label1);
             Controls.Add(button1);
             Controls.Add(textBox1);
+            Controls.Add(panelMenuLateral);
             Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 2, 3, 2);
@@ -397,5 +419,7 @@ namespace WinFormsApp1
         private Button button8;
         private Button button9;
         private Button button4;
+        private Button button11;
+        private Button button10;
     }
 }

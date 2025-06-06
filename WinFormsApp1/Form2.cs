@@ -362,7 +362,9 @@ namespace WinFormsApp1
 
         private void button9_Click(object sender, EventArgs e)
         {
-
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
+           
         }
 
         private void button10_Click(object sender, EventArgs e)

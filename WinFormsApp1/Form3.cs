@@ -13,7 +13,7 @@ namespace WinFormsApp1
             AtualizarListas();
         }
 
-        private void AtualizarListas()
+        private void AtualizarListas() //Classe para atualizar
         {
             listBox1.Items.Clear();
             listBox2.Items.Clear();
@@ -28,7 +28,7 @@ namespace WinFormsApp1
             foreach (var item in PedidosStore.ItensFinalizados)
                 listBox3.Items.Add(item);
         }
-
+        /////////////////////////////////////////////////////
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -47,9 +47,11 @@ namespace WinFormsApp1
 
                 listBox1.Items.Remove(texto);
                 PedidosStore.Pedidos.Remove(texto);
+                MessageBox.Show(this, "Pedido enviado para a cozinha para preparo!");
             }
         }
 
+      /////////////////////////////////////////////////////
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -68,6 +70,7 @@ namespace WinFormsApp1
 
                 listBox2.Items.Remove(texto);
                 PedidosStore.ItensSelecionados.Remove(texto);
+                MessageBox.Show(this, "Pedido entregue com sucesso!");
             }
         }
 
