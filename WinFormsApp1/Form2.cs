@@ -21,7 +21,7 @@ namespace WinFormsApp1
         public Form2()
         {
             InitializeComponent();
-            panelMenuLateral.Width = larguraMinima; // começa fechado
+            panelMenuLateral.Width = larguraMinima; 
             AdicionarProdutos();
 
             labelCaixa = (Label)this.Controls.Find("labelCaixa", true).FirstOrDefault();
@@ -33,16 +33,16 @@ namespace WinFormsApp1
 
         public void AdicionarProdutos()
         {
-            produtos.Add(new Produto("Pão de Queijo", 3.50m));
-            produtos.Add(new Produto("Coxinha", 5.00m));
-            produtos.Add(new Produto("Pastel de Carne", 6.00m));
-            produtos.Add(new Produto("Pastel de Queijo", 5.50m));
-            produtos.Add(new Produto("Suco Natural (300ml)", 4.00m));
-            produtos.Add(new Produto("Refrigerante Lata", 4.50m));
-            produtos.Add(new Produto("Hambúrguer Simples", 8.00m));
-            produtos.Add(new Produto("Hambúrguer com Queijo", 9.00m));
-            produtos.Add(new Produto("X-Tudo", 12.00m));
-            produtos.Add(new Produto("Água Mineral (500ml)", 2.50m));
+            produtos.Add(new Produto("Pão de Queijo", 3.50m, true));
+            produtos.Add(new Produto("Coxinha - chapa", 5.00m,false));
+            produtos.Add(new Produto("Pastel de Carne - chapa", 6.00m, false));
+            produtos.Add(new Produto("Pastel de Queijo - chapa", 5.50m, false));
+            produtos.Add(new Produto("Suco Natural (300ml)", 4.00m, true));
+            produtos.Add(new Produto("Refrigerante Lata", 4.50m, true));
+            produtos.Add(new Produto("Hambúrguer Simples - chapa", 8.00m, false));
+            produtos.Add(new Produto("Hambúrguer com Queijo - chapa", 9.00m, false));
+            produtos.Add(new Produto("X-Tudo - chapa", 12.00m, false));
+            produtos.Add(new Produto("Água Mineral (500ml)", 2.50m, true));
 
             foreach (var produto in produtos)
             {
@@ -73,30 +73,72 @@ namespace WinFormsApp1
         }
 
         private void button3_Click(object sender, EventArgs e)
+      
         {
-            
-                foreach (var item in listBox1.SelectedItems)
+            numericUpDown1.Minimum = 1;
+
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
             {
-                string itemComQuantidade = $"{item} - Quantidade: {numericUpDown1.Value}";
-                numericUpDown1.Minimum = 1;
-            
-               if (string.IsNullOrWhiteSpace(textBox1.Text))
+                MessageBox.Show(this, "Antes de começar por favor adicione um nome ao pedido!");
+                return;
+            }
+
+            foreach (Produto produto in listBox1.SelectedItems)
+            {
+
+                if (produto.Nome == "Coxinha - chapa") 
                 {
-                 MessageBox.Show(this, "Antes de começar por favor adicione um nome ao pedido!");return;
+                    MessageBox.Show(this,"Pedido de chapa!");
+                  
                 }
-                    
-                
-                 if (!listBox2.Items.Contains(itemComQuantidade))
+                if (produto.Nome == "Pastel de Carne")
+                {
+                    MessageBox.Show(this, "Pedido de chapa!");
+
+                }
+                if (produto.Nome == "Pastel de Queijo")
+                {
+                    MessageBox.Show(this, "Pedido de chapa!");
+
+                }
+                if (produto.Nome == "Hambúrguer Simples")
+                {
+                    MessageBox.Show(this, "Pedido de chapa!");
+
+                }
+                if (produto.Nome == " Hambúrguer com Queijo ")
+                {
+                    MessageBox.Show(this, "Pedido de chapa!");
+
+                }
+                if (produto.Nome == "X-Tudo")
+                {
+                    MessageBox.Show(this, "Pedido de chapa!");
+
+                }
+
+
+                string itemComQuantidade = $"{produto} - Quantidade: {numericUpDown1.Value}";
+
+                if (!listBox2.Items.Contains(itemComQuantidade))
                 {
                     listBox2.Items.Add(itemComQuantidade);
                 }
-                
+            
 
-
-
-                MostrarTotal();
-            }
+            MostrarTotal();
         }
+
+
+
+
+
+
+    }
+
+
+      
+           
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -222,13 +264,24 @@ namespace WinFormsApp1
 
         public class Produto
         {
+            private string v1;
+            private decimal v2;
+            internal bool chapa;
+
             public string Nome { get; set; }
             public decimal Preco { get; set; }
+            public bool Chapa { get; internal set; }
 
-            public Produto(string nome, decimal preco)
+            public Produto(string nome, decimal preco, bool v)
             {
                 Nome = nome;
                 Preco = preco;
+            }
+
+            public Produto(string v1, decimal v2)
+            {
+                this.v1 = v1;
+                this.v2 = v2;
             }
 
             public override string ToString()
