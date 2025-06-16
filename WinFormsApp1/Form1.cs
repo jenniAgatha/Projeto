@@ -1,4 +1,7 @@
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace WinFormsApp1
 {
@@ -7,6 +10,8 @@ namespace WinFormsApp1
         public Form1()
         {
             InitializeComponent();
+
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,18 +38,42 @@ namespace WinFormsApp1
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            Hide();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            foreach (var item in PedidosStore.ItensSelecionados)
-                listBox2.Items.Add(item);
+
         }
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+            foreach (var item in listBox1.Items)
+            {
+
+                listBox2.Items.Add(item);
+            }
+        }
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

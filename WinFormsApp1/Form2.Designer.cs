@@ -43,12 +43,12 @@ namespace WinFormsApp1
             LabelCaixa = new Label();
             button6 = new Button();
             panelMenuLateral = new Panel();
+            button11 = new Button();
+            button10 = new Button();
             button4 = new Button();
             button9 = new Button();
             button8 = new Button();
             timerMenu = new System.Windows.Forms.Timer(components);
-            button10 = new Button();
-            button11 = new Button();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             panelMenuLateral.SuspendLayout();
             SuspendLayout();
@@ -60,7 +60,7 @@ namespace WinFormsApp1
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.Image = Properties.Resources.Design_sem_nome__5_;
-            button1.Location = new Point(564, 113);
+            button1.Location = new Point(545, 216);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
             button1.Size = new Size(41, 23);
@@ -73,7 +73,7 @@ namespace WinFormsApp1
             textBox1.BackColor = Color.FromArgb(243, 241, 238);
             textBox1.BorderStyle = BorderStyle.FixedSingle;
             textBox1.ForeColor = Color.Black;
-            textBox1.Location = new Point(274, 113);
+            textBox1.Location = new Point(236, 216);
             textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(284, 23);
@@ -85,7 +85,7 @@ namespace WinFormsApp1
             label1.AutoSize = true;
             label1.BackColor = Color.FromArgb(202, 196, 183);
             label1.ForeColor = Color.FromArgb(221, 251, 0);
-            label1.Location = new Point(227, 118);
+            label1.Location = new Point(177, 224);
             label1.Name = "label1";
             label1.Size = new Size(41, 15);
             label1.TabIndex = 2;
@@ -97,10 +97,10 @@ namespace WinFormsApp1
             listBox1.BorderStyle = BorderStyle.FixedSingle;
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(258, 162);
+            listBox1.Location = new Point(254, 263);
             listBox1.Margin = new Padding(3, 2, 3, 2);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(300, 242);
+            listBox1.Size = new Size(332, 242);
             listBox1.TabIndex = 3;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
@@ -110,10 +110,10 @@ namespace WinFormsApp1
             listBox2.BorderStyle = BorderStyle.FixedSingle;
             listBox2.FormattingEnabled = true;
             listBox2.ItemHeight = 15;
-            listBox2.Location = new Point(893, 243);
+            listBox2.Location = new Point(893, 242);
             listBox2.Margin = new Padding(3, 2, 3, 2);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(305, 242);
+            listBox2.Size = new Size(365, 242);
             listBox2.TabIndex = 4;
             listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             // 
@@ -125,10 +125,10 @@ namespace WinFormsApp1
             button2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.FromArgb(221, 251, 0);
             button2.Image = Properties.Resources.Design_sem_nome__4_;
-            button2.Location = new Point(258, 461);
+            button2.Location = new Point(431, 538);
             button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
-            button2.Size = new Size(41, 35);
+            button2.Size = new Size(48, 35);
             button2.TabIndex = 5;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
@@ -142,10 +142,10 @@ namespace WinFormsApp1
             button3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button3.ForeColor = Color.Black;
             button3.ImageAlign = ContentAlignment.BottomCenter;
-            button3.Location = new Point(258, 408);
+            button3.Location = new Point(254, 536);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(41, 38);
+            button3.Size = new Size(44, 37);
             button3.TabIndex = 6;
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
@@ -154,7 +154,7 @@ namespace WinFormsApp1
             // 
             numericUpDown1.BackColor = Color.FromArgb(221, 251, 0);
             numericUpDown1.ForeColor = SystemColors.InfoText;
-            numericUpDown1.Location = new Point(472, 423);
+            numericUpDown1.Location = new Point(500, 547);
             numericUpDown1.Margin = new Padding(3, 2, 3, 2);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(86, 23);
@@ -167,7 +167,7 @@ namespace WinFormsApp1
             button7.BackColor = Color.FromArgb(227, 255, 27);
             button7.FlatAppearance.BorderColor = Color.FromArgb(225, 255, 35);
             button7.FlatStyle = FlatStyle.Flat;
-            button7.Location = new Point(1215, 679);
+            button7.Location = new Point(1221, 687);
             button7.Margin = new Padding(3, 2, 3, 2);
             button7.Name = "button7";
             button7.Size = new Size(70, 22);
@@ -183,7 +183,7 @@ namespace WinFormsApp1
             comboBox1.ForeColor = Color.FromArgb(227, 255, 27);
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Cartão", "Dinheiro", "Pix" });
-            comboBox1.Location = new Point(893, 500);
+            comboBox1.Location = new Point(893, 496);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(138, 23);
             comboBox1.TabIndex = 18;
@@ -192,9 +192,11 @@ namespace WinFormsApp1
             // textBox2
             // 
             textBox2.BackColor = Color.FromArgb(202, 196, 183);
-            textBox2.Location = new Point(893, 547);
+            textBox2.BorderStyle = BorderStyle.None;
+            textBox2.Location = new Point(893, 528);
+            textBox2.Margin = new Padding(6);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
+            textBox2.Size = new Size(100, 16);
             textBox2.TabIndex = 19;
             textBox2.TextChanged += textBox2_TextChanged_1;
             // 
@@ -202,7 +204,7 @@ namespace WinFormsApp1
             // 
             Resultado.AutoSize = true;
             Resultado.BackColor = Color.Transparent;
-            Resultado.Location = new Point(1158, 576);
+            Resultado.Location = new Point(1110, 75);
             Resultado.Name = "Resultado";
             Resultado.Size = new Size(40, 15);
             Resultado.TabIndex = 22;
@@ -226,7 +228,7 @@ namespace WinFormsApp1
             // 
             Viagem.AutoSize = true;
             Viagem.BackColor = Color.FromArgb(225, 255, 35);
-            Viagem.Location = new Point(1130, 500);
+            Viagem.Location = new Point(1190, 500);
             Viagem.Name = "Viagem";
             Viagem.Size = new Size(68, 19);
             Viagem.TabIndex = 24;
@@ -239,7 +241,7 @@ namespace WinFormsApp1
             LabelCaixa.AutoSize = true;
             LabelCaixa.BackColor = Color.Transparent;
             LabelCaixa.ForeColor = SystemColors.ActiveCaptionText;
-            LabelCaixa.Location = new Point(1158, 547);
+            LabelCaixa.Location = new Point(951, 75);
             LabelCaixa.Name = "LabelCaixa";
             LabelCaixa.Size = new Size(42, 15);
             LabelCaixa.TabIndex = 25;
@@ -273,6 +275,24 @@ namespace WinFormsApp1
             panelMenuLateral.Size = new Size(171, 744);
             panelMenuLateral.TabIndex = 27;
             panelMenuLateral.Paint += panel1_Paint;
+            // 
+            // button11
+            // 
+            button11.Location = new Point(40, 377);
+            button11.Name = "button11";
+            button11.Size = new Size(88, 27);
+            button11.TabIndex = 28;
+            button11.Text = "Sair";
+            button11.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            button10.Location = new Point(40, 323);
+            button10.Name = "button10";
+            button10.Size = new Size(88, 28);
+            button10.TabIndex = 28;
+            button10.Text = "Estoque";
+            button10.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -317,24 +337,6 @@ namespace WinFormsApp1
             // 
             timerMenu.Interval = 10;
             timerMenu.Tick += timerMenu_Tick;
-            // 
-            // button10
-            // 
-            button10.Location = new Point(40, 323);
-            button10.Name = "button10";
-            button10.Size = new Size(88, 28);
-            button10.TabIndex = 28;
-            button10.Text = "Estoque";
-            button10.UseVisualStyleBackColor = true;
-            // 
-            // button11
-            // 
-            button11.Location = new Point(40, 377);
-            button11.Name = "button11";
-            button11.Size = new Size(88, 27);
-            button11.TabIndex = 28;
-            button11.Text = "Sair";
-            button11.UseVisualStyleBackColor = true;
             // 
             // Form2
             // 

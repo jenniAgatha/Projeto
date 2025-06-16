@@ -31,10 +31,12 @@
             button6 = new Button();
             listBox1 = new ListBox();
             listBox2 = new ListBox();
+            button7 = new Button();
             SuspendLayout();
             // 
             // button6
             // 
+            button6.ForeColor = Color.Black;
             button6.Location = new Point(12, 12);
             button6.Name = "button6";
             button6.Size = new Size(75, 23);
@@ -46,7 +48,7 @@
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(24, 61);
+            listBox1.Location = new Point(12, 41);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(723, 244);
             listBox1.TabIndex = 1;
@@ -56,17 +58,30 @@
             // 
             listBox2.FormattingEnabled = true;
             listBox2.ItemHeight = 15;
-            listBox2.Location = new Point(660, 442);
+            listBox2.Location = new Point(660, 421);
             listBox2.Name = "listBox2";
             listBox2.Size = new Size(720, 244);
             listBox2.TabIndex = 2;
             listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             // 
+            // button7
+            // 
+            button7.FlatAppearance.BorderSize = 3;
+            button7.ForeColor = Color.Black;
+            button7.Location = new Point(660, 378);
+            button7.Name = "button7";
+            button7.Size = new Size(75, 23);
+            button7.TabIndex = 3;
+            button7.Text = "Pronto";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1410, 739);
+            ClientSize = new Size(1450, 739);
+            Controls.Add(button7);
             Controls.Add(listBox2);
             Controls.Add(listBox1);
             Controls.Add(button6);
@@ -88,5 +103,6 @@
         private Button button6;
         private ListBox listBox1;
         private ListBox listBox2;
+        private Button button7;
     }
 }
