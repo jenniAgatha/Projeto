@@ -21,7 +21,7 @@ namespace WinFormsApp1
         public Form2()
         {
             InitializeComponent();
-            panelMenuLateral.Width = larguraMinima; 
+            panelMenuLateral.Width = larguraMinima;
             AdicionarProdutos();
 
             labelCaixa = (Label)this.Controls.Find("labelCaixa", true).FirstOrDefault();
@@ -34,7 +34,7 @@ namespace WinFormsApp1
         public void AdicionarProdutos()
         {
             produtos.Add(new Produto("Pão de Queijo", 3.50m, true));
-            produtos.Add(new Produto("Coxinha - chapa", 5.00m,false));
+            produtos.Add(new Produto("Coxinha - chapa", 5.00m, false));
             produtos.Add(new Produto("Pastel de Carne - chapa", 6.00m, false));
             produtos.Add(new Produto("Pastel de Queijo - chapa", 5.50m, false));
             produtos.Add(new Produto("Suco Natural (300ml)", 4.00m, true));
@@ -59,7 +59,7 @@ namespace WinFormsApp1
 
                 listBox2.Items.Add(textBox1.Text);
                 MostrarTotal();
-               
+
             }
         }
 
@@ -73,7 +73,7 @@ namespace WinFormsApp1
         }
 
         private void button3_Click(object sender, EventArgs e)
-      
+
         {
             numericUpDown1.Minimum = 1;
 
@@ -86,10 +86,10 @@ namespace WinFormsApp1
             foreach (Produto produto in listBox1.SelectedItems)
             {
 
-                if (produto.Nome == "Coxinha - chapa") 
+                if (produto.Nome == "Coxinha - chapa")
                 {
-                    MessageBox.Show(this,"Pedido de chapa!");
-                  
+                    MessageBox.Show(this, "Pedido de chapa!");
+
                 }
                 if (produto.Nome == "Pastel de Carne")
                 {
@@ -124,21 +124,21 @@ namespace WinFormsApp1
                 {
                     listBox2.Items.Add(itemComQuantidade);
                 }
-            
 
-            MostrarTotal();
+
+                MostrarTotal();
+            }
+
+
+
+
+
+
         }
 
 
 
 
-
-
-    }
-
-
-      
-           
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -167,7 +167,7 @@ namespace WinFormsApp1
             {
                 MessageBox.Show(this, $"Pagamento em Pix\nValor - {preco:F2}");
             }
-            
+
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -204,7 +204,7 @@ namespace WinFormsApp1
                 {
                     MessageBox.Show(this, "Digite um valor recebido válido!");
                     textBox2.Focus();
-                   
+
                     return;
                 }
 
@@ -231,7 +231,7 @@ namespace WinFormsApp1
                 MessageBox.Show(this, "Saldo do caixa baixo!");
             }
 
-           MessageBox.Show(this, $"Troco: R$ {troco:F2}");
+            MessageBox.Show(this, $"Troco: R$ {troco:F2}");
 
             string extrato = string.Join("\n", listBox2.Items.Cast<string>());
             string formaPagamento = comboBox1.SelectedItem?.ToString() ?? "Não selecionado";
@@ -246,7 +246,7 @@ namespace WinFormsApp1
             PedidosStore.Pedidos.Add(pedido);
 
             LimparPedido();
-           
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { }
@@ -318,8 +318,8 @@ namespace WinFormsApp1
             Resultado.Text = $"Total selecionado: R$ {total:F2}";
             return total;
         }
-      
-          
+
+
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e) { }
 
@@ -329,13 +329,13 @@ namespace WinFormsApp1
 
         private void comboBox1_SelectedIndexChanged_3(object sender, EventArgs e)
         {
-           // if (string.IsNullOrWhiteSpace(listBox2.Text))
+            // if (string.IsNullOrWhiteSpace(listBox2.Text))
 
-           // {
-          ////      MessageBox.Show(this, "Não é possível prosseguir sem itens adicionados!");return;
-                
-           // }
-            
+            // {
+            ////      MessageBox.Show(this, "Não é possível prosseguir sem itens adicionados!");return;
+
+            // }
+
 
 
 
@@ -356,7 +356,7 @@ namespace WinFormsApp1
         }
         // bool menUAberto = true;
         int larguraMaxima = 200;
-        int larguraMinima = 0; 
+        int larguraMinima = 0;
         private bool menuAberto = false;
 
 
@@ -417,7 +417,7 @@ namespace WinFormsApp1
         {
             Form1 form1 = new Form1();
             form1.ShowDialog();
-           
+
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -436,6 +436,22 @@ namespace WinFormsApp1
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Form5 form5 = new Form5();
+            form5.Show();
+        }
+
+        private void button10_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button12_Click_1(object sender, EventArgs e)
         {
 
         }

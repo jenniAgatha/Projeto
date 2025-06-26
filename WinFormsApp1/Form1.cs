@@ -10,9 +10,16 @@ namespace WinFormsApp1
         public Form1()
         {
             InitializeComponent();
+            foreach (var item in listBox1.Items)
+            {
 
-           
+                listBox2.Items.Add(item);
+            }
+
+
         }
+
+        public event Action<List<string>> ItensSelecionadosConfirmados;
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -54,16 +61,55 @@ namespace WinFormsApp1
         private void button7_Click(object sender, EventArgs e)
         {
 
-            foreach (var item in listBox1.Items)
-            {
+            
+        }
 
-                listBox2.Items.Add(item);
+        public void AdicionarItensNaListBox1(IEnumerable<string> itens)
+        {
+            foreach (var item in itens)
+            {
+                if (!listBox1.Items.Contains(item))
+                    listBox1.Items.Add(item);
             }
         }
     }
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

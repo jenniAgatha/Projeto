@@ -13,7 +13,7 @@ namespace WinFormsApp1
             AtualizarListas();
         }
 
-        private void AtualizarListas() //Classe para atualizar
+        private void AtualizarListas() 
         {
             listBox1.Items.Clear();
             listBox2.Items.Clear();
@@ -51,7 +51,7 @@ namespace WinFormsApp1
             }
         }
 
-      /////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -81,6 +81,11 @@ namespace WinFormsApp1
         }
 
         private void Form3_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
